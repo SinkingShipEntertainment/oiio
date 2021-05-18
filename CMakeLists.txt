@@ -55,7 +55,10 @@ include (GNUInstallDirs)
 
 set (CMAKE_MODULE_PATH
      "${PROJECT_SOURCE_DIR}/src/cmake/modules"
-     "${PROJECT_SOURCE_DIR}/src/cmake")
+     "${PROJECT_SOURCE_DIR}/src/cmake"
+     "${PROJECT_SOURCE_DIR}/rez_cmake")
+
+include(rez_cmake)
 
 include (oiio_macros)
 include (platform)
@@ -69,7 +72,7 @@ option (EMBEDPLUGINS "Embed format plugins in libOpenImageIO" ON)
 option (OIIO_BUILD_TOOLS "Build the command-line tools" ON)
 option (OIIO_BUILD_TESTS "Build the unit tests" ON)
 option (USE_OPENGL "Include OpenGL support" ON)
-option (USE_QT "Include Qt support" ON)
+option (USE_QT "Include Qt support" OFF)
 option (USE_PYTHON "Build the Python bindings" ON)
 set (PYTHON_VERSION "2.7" CACHE STRING "Target version of python to find")
 option (PYLIB_INCLUDE_SONAME "If ON, soname/soversion will be set for Python module library")

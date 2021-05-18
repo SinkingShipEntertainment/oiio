@@ -6,3 +6,7 @@ testsuite/runtest.pyc
 src/doc/figures/
 .cproject
 .project
+
+# REZ
+_rez_build
+.vscode
