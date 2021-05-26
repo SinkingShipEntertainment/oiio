@@ -8,3 +8,6 @@ testsuite/runtest.pyc
 .project
 .DS_Store
 
+# SSE
+_rez_build
+.vscode

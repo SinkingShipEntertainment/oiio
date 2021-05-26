@@ -101,7 +101,9 @@ message(STATUS "Setting Namespace to: ${PROJ_NAMESPACE_V}")
 
 list (APPEND CMAKE_MODULE_PATH
       "${PROJECT_SOURCE_DIR}/src/cmake/modules"
-      "${PROJECT_SOURCE_DIR}/src/cmake")
+      "${PROJECT_SOURCE_DIR}/src/cmake"
+      "${PROJECT_SOURCE_DIR}/rez_cmake")
+include (rez_cmake)
 
 include (GNUInstallDirs)
 

@@ -4,7 +4,8 @@
 
 # Python-related options.
 option (USE_PYTHON "Build the Python bindings" ON)
-set (PYTHON_VERSION "2.7" CACHE STRING "Target version of python to find")
+#set (PYTHON_VERSION "2.7" CACHE STRING "Target version of python to find")
+set (PYTHON_VERSION ${REZ_BUILD_WITH_PYTHON_VERSION} CACHE STRING "Target version of python to find")
 option (PYLIB_INCLUDE_SONAME "If ON, soname/soversion will be set for Python module library" OFF)
 option (PYLIB_LIB_PREFIX "If ON, prefix the Python module with 'lib'" OFF)
 set (PYMODULE_SUFFIX "" CACHE STRING "Suffix to add to Python module init namespace")
@@ -31,7 +32,7 @@ macro (find_python)
     set (PYTHON_VERSION_FOUND ${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR})
 
     if (NOT ${PYTHON_VERSION} VERSION_EQUAL ${PYTHON_VERSION_FOUND} )
-        message (WARNING "The requested version ${PYTHON_VERSION} was not found.") 
+        message (WARNING "The requested version ${PYTHON_VERSION} was not found.")
         message (WARNING "Using ${PYTHON_VERSION_FOUND} instead.")
     endif ()
 
