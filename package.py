@@ -31,7 +31,7 @@ requires = [
     "libpng-1.6.29",
     "ocio-1.0.9",
     "openvdb-6.1.0",
-    "qtbase-5.15.2",  # qtbase has 2 python variants. Boost variants will help REZ determine which one to use
+    "qtbase-5.15.2",
 ]
 
 private_build_requires = [
