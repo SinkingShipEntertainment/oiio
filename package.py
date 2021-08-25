@@ -26,7 +26,6 @@ with scope("config") as c:
 requires = [
     "tbb-2017.6",
     "openexr-2.2.0",
-    "ptex-2.1.28",    # API version 4.1.4
     "libtiff-4.0.7",
     "libjpeg-9.2",
     "libpng-1.6.29",
@@ -38,18 +37,18 @@ requires = [
 private_build_requires = [
 ]
 
-# NOTE: Adjust CMakeLists.txt (root level) and rez_cmake.cmake
-# to reflect the proper python version.
 variants = [
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.61.0"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.61.0", "!ptex"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.61.0", "ptex-2.1.28"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "!ptex"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "ptex-2.1.28"],
 ]
 
 build_system = "cmake"
 
 uuid = "repository.oiio"
 
-# Pass cmake arguments to the REz build system:
+# Pass cmake arguments to the REZ build system:
 # rez-build -i -- -DUSE_PYTHON=OFF -DSTOP_ON_WARNING=OFF -DBoost_NO_BOOST_CMAKE=On -DBoost_NO_SYSTEM_PATHS=True
 # rez-release -- -DUSE_PYTHON=OFF -DSTOP_ON_WARNING=OFF -DBoost_NO_BOOST_CMAKE=On -DBoost_NO_SYSTEM_PATHS=True
 
