@@ -65,6 +65,7 @@ def commands():
     env.PATH.append("{root}/bin")
 
     env.OPENIMAGEIOHOME = "{root}"  # For OpenShadingLanguage to find it
+    env.OPENIMAGEIO_ROOT_DIR = "{root}"  # For OpenColorIO to find it
 
     if building:
         env.CMAKE_MODULE_PATH.append("{root}")
