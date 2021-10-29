@@ -61,5 +61,4 @@ def commands():
     env.OPENIMAGEIOHOME = "{root}"  # For OpenShadingLanguage to find it
     env.OPENIMAGEIO_ROOT_DIR = "{root}"  # For OpenColorIO to find it
 
-    if building:
-        env.LD_LIBRARY_PATH.prepend("{root}/lib64")
+    env.LD_LIBRARY_PATH.prepend("{root}/lib64")
