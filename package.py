@@ -24,12 +24,12 @@ with scope("config") as c:
         c.release_packages_path = os.environ["SSE_REZ_REPO_RELEASE_EXT"]
 
 requires = [
-    "tbb-2017.6",
-    "openexr-2.2.0",
+    "tbb-2018.6",
+    "openexr-2.3.0",
     "libtiff-4.0.7",
     "libjpeg-9.2",
     "libpng-1.6.29",
-    "ocio-1.0.9",
+    "ocio-1.1.0",
     "openvdb-6.1.0",
     "qtbase-5.15.2",
 ]
