@@ -80,15 +80,22 @@ if (CMAKE_USE_FOLDERS)
 endif ()
 
 
+##############################################################
+# REZ
+set(LibRaw_ROOT $ENV{REZ_LIBRAW_ROOT})
+set(pybind11_ROOT $ENV{REZ_PYBIND11_ROOT})
+##############################################################
+
+
 option (VERBOSE "Print lots of messages while compiling" OFF)
 option (${PROJ_NAME}_BUILD_TOOLS "Build the command-line tools" ON)
-option (${PROJ_NAME}_BUILD_TESTS "Build the unit tests" ON)
+option (${PROJ_NAME}_BUILD_TESTS "Build the unit tests" OFF)
 set (OIIO_LIBNAME_SUFFIX "" CACHE STRING
      "Optional name appended to ${PROJECT_NAME} libraries that are built")
 option (BUILD_OIIOUTIL_ONLY "If ON, will build *only* libOpenImageIO_Util" OFF)
-option (BUILD_DOCS "If ON, build documentation and man pages." ON)
-option (INSTALL_DOCS "If ON, install documentation and man pages." ON)
-option (INSTALL_FONTS "If ON, install default fonts" ON)
+option (BUILD_DOCS "If ON, build documentation and man pages." OFF)
+option (INSTALL_DOCS "If ON, install documentation and man pages." OFF)
+option (INSTALL_FONTS "If ON, install default fonts" OFF)
 option (EMBEDPLUGINS "Embed format plugins in libOpenImageIO" ON)
 #option (BUILD_COIIO "Build C interface library" OFF)
 set (PLUGIN_SEARCH_PATH "" CACHE STRING "Default plugin search path")
