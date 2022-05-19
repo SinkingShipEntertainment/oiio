@@ -19,3 +19,5 @@ ext/
 /*.jpg
 /*.tx
 /*.log
+
+_rez_build
