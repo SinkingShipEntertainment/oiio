@@ -1,6 +1,6 @@
 name = "oiio"
 
-version = "2.1.16.0"
+version = "2.1.16.0.sse.1.0.0"
 
 description = \
     """
@@ -31,7 +31,7 @@ requires = [
     "libpng-1.6.29",
     "ocio-1.1.0",
     "openvdb-6.1.0",
-    "qtbase-5.15.2",
+    "qtbase-5.14.1",
 ]
 
 private_build_requires = [
