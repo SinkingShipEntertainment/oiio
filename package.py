@@ -43,7 +43,7 @@ variants = [
     ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.7.7", "!ptex"],
     ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.7.7", "ptex-2.1.28"],
     ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.9.7", "!ptex"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.9.7", "ptex-2.1.28"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.9.7", "ptex-2.1.33"],
 ]
 
 build_system = "cmake"
