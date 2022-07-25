@@ -32,15 +32,16 @@ requires = [
     "numpy",
     "openexr-2.4.0",
     "qtbase-5.15.2",
-    "ocio",  # build of OCIO without OIIO
+    "ocio-2.1.1",  # build of OCIO without OIIO
 ]
 
 private_build_requires = [
 ]
 
 variants = [
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.61"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.61", "python-2.7.5"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70", "python-3.7.7"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70", "python-3.9.7"],
 ]
 
 build_system = "cmake"
