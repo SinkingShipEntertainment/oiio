@@ -1,6 +1,6 @@
 name = "oiio"
 
-version = "2.3.15.0"
+version = "2.3.15.0.sse.1.0.0"
 
 description = \
     """
@@ -30,7 +30,7 @@ requires = [
     "libraw",
     "pybind11",
     "numpy",
-    "openexr-2.4.0",
+    "openexr-3.1.5",
     "qtbase-5.15.2",
     "ocio-2.1.1",  # build of OCIO without OIIO
 ]
