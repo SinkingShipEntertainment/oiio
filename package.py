@@ -1,6 +1,11 @@
 name = "oiio"
 
-version = "2.1.16.0.sse.1.0.0"
+# NOTE: The internal SSE version may reflect <OIIO_VERSION>.sse.X.Y.Z:
+# X = API change, meaning, rez dependencies version changes
+# Y = modification within the same version of OIIO and dependencies
+# Z = small bug fixes
+
+version = "2.1.16.0.sse.2.0.0"
 
 description = \
     """
@@ -24,13 +29,13 @@ with scope("config") as c:
         c.release_packages_path = os.environ["SSE_REZ_REPO_RELEASE_EXT"]
 
 requires = [
-    "tbb-2018.6",
-    "openexr-2.3.0",
+    "tbb-2019.6",
+    "openexr-2.4.3",
     "libtiff-4.0.7",
     "libjpeg-9.2",
     "libpng-1.6.29",
     "ocio-1.1.0",
-    "openvdb-6.1.0",
+    "openvdb-7.1.0",
     "qtbase-5.14.1",
 ]
 
@@ -38,12 +43,10 @@ private_build_requires = [
 ]
 
 variants = [
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.61.0", "python-2.7.5", "!ptex"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.61.0", "python-2.7.5", "ptex-2.1.28"],
     ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.7.7", "!ptex"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.7.7", "ptex-2.1.28"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.7.7", "ptex-2.3.2"],
     ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.9.7", "!ptex"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.9.7", "ptex-2.1.33"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70.0", "python-3.9.7", "ptex-2.3.2"],
 ]
 
 build_system = "cmake"
