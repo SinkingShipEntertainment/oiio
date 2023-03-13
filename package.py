@@ -1,6 +1,6 @@
 name = "oiio"
 
-version = "2.3.15.0.sse.1.0.0"
+version = "2.3.15.0.sse.2.0.0"
 
 description = \
     """
@@ -28,9 +28,12 @@ requires = [
     "libjpeg-9.2",
     "libpng-1.6.29",
     "libraw",
+    "tbb-2020.3",
+    "boost-1.76",
     "pybind11",
     "numpy",
     "openexr-3.1.5",
+    "openvdb-9.1.0",
     "qtbase-5.15.2",
     "ocio-2.1.1",  # build of OCIO without OIIO
 ]
@@ -39,9 +42,10 @@ private_build_requires = [
 ]
 
 variants = [
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.61", "python-2.7.5"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70", "python-3.7.7"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "boost-1.70", "python-3.9.7"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.7.7", "ptex"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.7.7", "!ptex"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.9.7", "ptex"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.9.7", "!ptex"],
 ]
 
 build_system = "cmake"
