@@ -28,8 +28,6 @@ requires = [
     "libjpeg-9.2",
     "libpng-1.6.29",
     "libraw",
-    "tbb-2020.3",
-    "boost-1.76",
     "pybind11",
     "numpy",
     "openexr-3.1.5",
@@ -42,10 +40,10 @@ private_build_requires = [
 ]
 
 variants = [
-    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.7.7", "ptex"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.7.7", "!ptex"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.9.7", "ptex"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.9.7", "!ptex"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.7", "tbb-2019.6", "boost-1.76", "ptex"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.7", "tbb-2019.6", "boost-1.76", "!ptex"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.9", "tbb-2019.6", "boost-1.76", "ptex"],
+    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.9", "tbb-2019.6", "boost-1.76", "!ptex"],
 ]
 
 build_system = "cmake"
