@@ -34,7 +34,7 @@ requires = [
     "numpy",
     "openexr-3.1.5",
     "openvdb-9.1.0",
-    "qtbase-5.15.2",
+    "qtbase-5.14.1",
     "ocio-2.1.1",  # build of OCIO without OIIO
 ]
 
