@@ -69,3 +69,11 @@ def commands():
     env.OPENIMAGEIO_ROOT_DIR = "{root}"  # For OpenColorIO to find it
 
     env.LD_LIBRARY_PATH.prepend("{root}/lib64")
+
+    if "python" in resolve:
+        python_ver = resolve["python"].version
+        if python_ver.major == 3:
+            if python_ver.minor == 7:
+                env.PYTHONPATH.append("{root}/lib64/python3.7/site-packages")
+            elif python_ver.minor == 9:
+                env.PYTHONPATH.append("{root}/lib64/python3.9/site-packages")
