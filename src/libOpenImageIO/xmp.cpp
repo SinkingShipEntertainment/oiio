@@ -5,7 +5,11 @@
 
 #include <iostream>
 
+#ifdef HBOOST
+#include <hboost/container/flat_map.hpp>
+#else
 #include <boost/container/flat_map.hpp>
+#endif
 
 #include <OpenImageIO/fmath.h>
 #include <OpenImageIO/imageio.h>
@@ -222,7 +226,11 @@ static XMPtag xmptag[] = {
 
 
 class XMPtagMap {
+#ifdef HBOOST
+    typedef hboost::container::flat_map<std::string, const XMPtag*> tagmap_t;
+#else
     typedef boost::container::flat_map<std::string, const XMPtag*> tagmap_t;
+#endif
     // Key is lower case so it's effectively case-insensitive
 public:
     XMPtagMap(const XMPtag* tag_table)

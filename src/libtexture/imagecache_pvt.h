@@ -12,8 +12,13 @@
 
 #include <tsl/robin_map.h>
 
+#ifdef HBOOST
+#include <hboost/container/flat_map.hpp>
+#include <hboost/thread/tss.hpp>
+#else
 #include <boost/container/flat_map.hpp>
 #include <boost/thread/tss.hpp>
+#endif
 
 #include <OpenImageIO/Imath.h>
 #include <OpenImageIO/export.h>
@@ -42,7 +47,11 @@ namespace pvt {
 #define FILE_CACHE_SHARDS 64
 #define TILE_CACHE_SHARDS 128
 
+#ifdef HBOOST
+using hboost::thread_specific_ptr;
+#else
 using boost::thread_specific_ptr;
+#endif
 
 class ImageCacheImpl;
 class ImageCachePerThreadInfo;

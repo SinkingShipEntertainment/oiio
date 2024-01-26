@@ -21,8 +21,13 @@
 #    include <xlocale.h>
 #endif
 
+#ifdef HBOOST
+#include <hboost/algorithm/string.hpp>
+#include <hboost/algorithm/string/find.hpp>
+#else
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/find.hpp>
+#endif
 
 #include <OpenImageIO/dassert.h>
 #include <OpenImageIO/platform.h>
@@ -601,7 +606,11 @@ Strutil::ifind(string_view a, string_view b)
         return string_view::npos;
     if (b.empty())
         return 0;
+#ifdef HBOOST
+    auto f = hboost::algorithm::ifind_first(a, b, std::locale::classic());
+#else
     auto f = boost::algorithm::ifind_first(a, b, std::locale::classic());
+#endif
     return f.empty() ? string_view::npos : f.begin() - a.data();
 }
 
@@ -613,7 +622,11 @@ Strutil::irfind(string_view a, string_view b)
         return string_view::npos;
     if (b.empty())
         return a.size();
+#ifdef HBOOST
+    auto f = hboost::algorithm::ifind_last(a, b, std::locale::classic());
+#else
     auto f = boost::algorithm::ifind_last(a, b, std::locale::classic());
+#endif
     return f.empty() ? string_view::npos : f.begin() - a.data();
 }
 
@@ -621,14 +634,22 @@ Strutil::irfind(string_view a, string_view b)
 void
 Strutil::to_lower(std::string& a)
 {
+#ifdef HBOOST
+    hboost::algorithm::to_lower(a, std::locale::classic());
+#else
     boost::algorithm::to_lower(a, std::locale::classic());
+#endif
 }
 
 
 void
 Strutil::to_upper(std::string& a)
 {
+#ifdef HBOOST
+    hboost::algorithm::to_upper(a, std::locale::classic());
+#else
     boost::algorithm::to_upper(a, std::locale::classic());
+#endif
 }
 
 

@@ -9,7 +9,11 @@
 #include <memory>
 #include <stack>
 
+#ifdef HBOOST
+#include <hboost/container/flat_set.hpp>
+#else
 #include <boost/container/flat_set.hpp>
+#endif
 
 #include <OpenImageIO/half.h>
 
@@ -1087,7 +1091,11 @@ protected:
     std::vector<ImageBuf*> m_img;
     std::vector<string_view> m_args;
     ParamValueList m_options;
+#ifdef HBOOST
+    typedef hboost::container::flat_set<int> FastIntSet;
+#else
     typedef boost::container::flat_set<int> FastIntSet;
+#endif
     FastIntSet subimage_includes;  // Subimages to operate on (empty == all)
     FastIntSet subimage_excludes;  // Subimages to skip for the op
     setup_func_t m_setup_func;

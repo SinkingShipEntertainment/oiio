@@ -14,7 +14,11 @@
 #include <OpenImageIO/Imath.h>
 #include <OpenImageIO/platform.h>
 
+#ifdef HBOOST
+#include <hboost/version.hpp>
+#else
 #include <boost/version.hpp>
+#endif
 
 #include "exr_pvt.h"
 

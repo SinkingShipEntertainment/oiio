@@ -14,7 +14,11 @@
 #include <OpenImageIO/Imath.h>
 #include <OpenImageIO/platform.h>
 
+#ifdef HBOOST
+#include <hboost/version.hpp>
+#else
 #include <boost/version.hpp>
+#endif
 
 #include <OpenEXR/ImfChannelList.h>
 #include <OpenEXR/ImfEnvmap.h>
@@ -1339,7 +1343,7 @@ OpenEXRInput::read_native_tiles(int subimage, int miplevel, int xbegin,
         return false;
     chend = clamp(chend, chbegin + 1, m_spec.nchannels);
 #if 0
-    std::cerr << "openexr rnt " << xbegin << ' ' << xend << ' ' << ybegin 
+    std::cerr << "openexr rnt " << xbegin << ' ' << xend << ' ' << ybegin
               << ' ' << yend << ", chans " << chbegin
               << "-" << (chend-1) << "\n";
 #endif

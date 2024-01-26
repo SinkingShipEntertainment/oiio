@@ -38,9 +38,15 @@
 namespace filesystem = std::filesystem;
 using std::error_code;
 #else
-#    include <boost/filesystem.hpp>
+#   ifdef HBOOST
+#       include <hboost/filesystem.hpp>
+namespace filesystem = hboost::filesystem;
+using hboost::system::error_code;
+#   else
+#       include <boost/filesystem.hpp>
 namespace filesystem = boost::filesystem;
 using boost::system::error_code;
+#    endif
 #endif
 
 

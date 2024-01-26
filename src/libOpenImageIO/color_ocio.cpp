@@ -8,7 +8,11 @@
 #include <string>
 #include <vector>
 
+#ifdef HBOOST
+#include <hboost/container/flat_map.hpp>
+#else
 #include <boost/container/flat_map.hpp>
+#endif
 
 #include <OpenImageIO/Imath.h>
 
@@ -108,9 +112,13 @@ public:
 };
 
 
-
+#ifdef HBOOST
+typedef hboost::container::flat_map<ColorProcCacheKey, ColorProcessorHandle>
+    ColorProcessorMap;
+#else
 typedef boost::container::flat_map<ColorProcCacheKey, ColorProcessorHandle>
     ColorProcessorMap;
+#endif
 
 
 

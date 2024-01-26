@@ -19,8 +19,13 @@
 
 #include "imageio_pvt.h"
 
+#ifdef HBOOST
+#include <hboost/thread/tss.hpp>
+using hboost::thread_specific_ptr;
+#else
 #include <boost/thread/tss.hpp>
 using boost::thread_specific_ptr;
+#endif
 
 
 OIIO_NAMESPACE_BEGIN

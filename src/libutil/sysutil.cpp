@@ -65,20 +65,33 @@
 #include <OpenImageIO/sysutil.h>
 #include <OpenImageIO/ustring.h>
 
+#ifdef HBOOST
+#include <hboost/version.hpp>
+#else
 #include <boost/version.hpp>
+#endif
+
 #if BOOST_VERSION >= 106500
 #    ifndef _GNU_SOURCE
 #        define _GNU_SOURCE
 #    endif
 #    if !defined(OIIO_DISABLE_BOOST_STACKTRACE)
-#        include <boost/stacktrace.hpp>
+#       ifdef HBOOST
+#           include <hboost/stacktrace.hpp>
+#       else
+#           include <boost/stacktrace.hpp>
+#       endif
 #    endif
 #endif
 
 // clang 7.0 (rc2) has errors when including boost thread!
 // The only thing we're using there is boost::physical_concurrency.
 #if !(OIIO_CLANG_VERSION >= 7)
-#    include <boost/thread.hpp>
+#   ifdef HBOOST
+#      include <hboost/thread.hpp>
+#   else
+#      include <boost/thread.hpp>
+#   endif
 #endif
 
 OIIO_INTEL_PRAGMA(warning disable 2196)
@@ -609,7 +622,11 @@ Sysutil::physical_concurrency()
 {
     // clang 7.0.0rc2 has trouble compiling boost thread
 #if BOOST_VERSION >= 105600 && !(OIIO_CLANG_VERSION >= 7)
+#ifdef HBOOST
+    return hboost::thread::physical_concurrency();
+#else
     return boost::thread::physical_concurrency();
+#endif
 #else
     return std::thread::hardware_concurrency();
 #endif
@@ -662,7 +679,11 @@ Sysutil::stacktrace()
 {
 #if BOOST_VERSION >= 106500 && !defined(OIIO_DISABLE_BOOST_STACKTRACE)
     std::stringstream out;
+#ifdef HBOOST
+    out << hboost::stacktrace::stacktrace();
+#else
     out << boost::stacktrace::stacktrace();
+#endif
     return out.str();
 #else
     return "";
@@ -687,7 +708,11 @@ stacktrace_signal_handler(int signum)
             std::cerr << Sysutil::stacktrace();
         else {
 #    if BOOST_VERSION >= 106500 && !defined(OIIO_DISABLE_BOOST_STACKTRACE)
+#ifdef HBOOST
+            hboost::stacktrace::safe_dump_to(stacktrace_filename.c_str());
+#else
             boost::stacktrace::safe_dump_to(stacktrace_filename.c_str());
+#endif
 #    endif
         }
     }

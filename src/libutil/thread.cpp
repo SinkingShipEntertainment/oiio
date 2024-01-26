@@ -33,7 +33,11 @@
 #    include <tbb/task_arena.h>
 #endif
 
+#ifdef HBOOST
+#include <hboost/container/flat_map.hpp>
+#else
 #include <boost/container/flat_map.hpp>
+#endif
 
 #if 0
 
@@ -358,7 +362,11 @@ private:
     int m_size { 0 };           // Number of threads in the queue
     std::mutex mutex;
     std::condition_variable cv;
+#ifdef HBOOST
+    mutable hboost::container::flat_map<std::thread::id, int> m_worker_threadids;
+#else
     mutable boost::container::flat_map<std::thread::id, int> m_worker_threadids;
+#endif
     mutable spin_mutex m_worker_threadids_mutex;
 };
 
