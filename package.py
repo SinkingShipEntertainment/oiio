@@ -21,7 +21,7 @@ requires = [
     "boost-1.76",
     "openexr-3.1.5",
     "openvdb-9.1.0",
-    "ocio-2.3.1",  # build of OCIO without CLI tools (without OIIO as dependency)
+    "ocio-2.3.2",  # build of OCIO without CLI tools (without OIIO as dependency)
 ]
 
 private_build_requires = [
