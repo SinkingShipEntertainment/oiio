@@ -1,6 +1,6 @@
 name = "oiio"
 
-version = "2.3.15.0.sse.2.0.0"
+version = "2.3.21.0.sse.1.0.0"
 
 description = \
     """
@@ -13,30 +13,26 @@ with scope("config") as c:
     c.release_packages_path = os.environ["SSE_REZ_REPO_RELEASE_EXT"]
 
 requires = [
-    "libtiff-4.0.7",
-    "libjpeg-9.2",
-    "libpng-1.6.29",
-    "libraw",
+    "libtiff",
+    "libjpeg",
+    "libpng",
     "pybind11",
     "numpy",
+    "boost-1.76",
     "openexr-3.1.5",
     "openvdb-9.1.0",
-    "qtbase-5.14.1",
-    "ocio-2.1.1",  # build of OCIO without OIIO
+    "ocio-2.3.1",  # build of OCIO without CLI tools (without OIIO as dependency)
 ]
 
 private_build_requires = [
 ]
 
 variants = [
-    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.7", "tbb-2019.6", "boost-1.76", "ptex"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.7", "tbb-2019.6", "boost-1.76", "!ptex"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.9", "tbb-2019.6", "boost-1.76", "ptex"],
-    ["platform-linux", "arch-x86_64", "os-centos-7", "python-3.9", "tbb-2019.6", "boost-1.76", "!ptex"],
+    ["python-3.7"],
+    ["python-3.9"],
 ]
 
 build_system = "cmake"
-
 uuid = "repository.oiio"
 
 # Pass cmake arguments to the REZ build system:
@@ -44,7 +40,23 @@ uuid = "repository.oiio"
 # rez-release -- -DSTOP_ON_WARNING=OFF -DBoost_NO_BOOST_CMAKE=On -DBoost_NO_SYSTEM_PATHS=True
 
 def pre_build_commands():
-    command("source /opt/rh/devtoolset-6/enable")
+
+    info = {}
+    with open("/etc/os-release", 'r') as f:
+        for line in f.readlines():
+            if line.startswith('#'):
+                continue
+            line_info = line.replace('\n', '').split('=')
+            if len(line_info) != 2:
+                continue
+            info[line_info[0]] = line_info[1].replace('"', '')
+    linux_distro = info.get("NAME", "centos")
+    print("Using Linux distro: " + linux_distro)
+
+    if linux_distro.lower().startswith("centos"):
+        command("source /opt/rh/devtoolset-6/enable")
+    elif linux_distro.lower().startswith("rocky"):
+        pass
 
 def commands():
     env.OIIO_LOCATION = "{root}"
@@ -59,10 +71,9 @@ def commands():
 
     env.LD_LIBRARY_PATH.prepend("{root}/lib64")
 
-    if "python" in resolve:
-        python_ver = resolve["python"].version
-        if python_ver.major == 3:
-            if python_ver.minor == 7:
-                env.PYTHONPATH.append("{root}/lib64/python3.7/site-packages")
-            elif python_ver.minor == 9:
-                env.PYTHONPATH.append("{root}/lib64/python3.9/site-packages")
+    python_ver = resolve["python"].version
+    if python_ver.major == 3:
+        if python_ver.minor == 7:
+            env.PYTHONPATH.append("{root}/lib64/python3.7/site-packages")
+        elif python_ver.minor == 9:
+            env.PYTHONPATH.append("{root}/lib64/python3.9/site-packages")
