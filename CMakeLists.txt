@@ -82,8 +82,9 @@ endif ()
 
 ##############################################################
 # REZ
-set(LibRaw_ROOT $ENV{REZ_LIBRAW_ROOT})
 set(pybind11_ROOT $ENV{REZ_PYBIND11_ROOT})
+set(OpenVDB_ROOT $ENV{OPENVDB_ROOT})
+set(FFmpeg_ROOT $ENV{FFMPEG_ROOT})
 ##############################################################
 
 
