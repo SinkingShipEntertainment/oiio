@@ -91,6 +91,15 @@ if (CMAKE_USE_FOLDERS)
 endif ()
 
 
+##############################################################
+# REZ
+set(pybind11_ROOT $ENV{REZ_PYBIND11_ROOT})
+set(OpenVDB_ROOT $ENV{OPENVDB_ROOT})
+set(FFmpeg_ROOT $ENV{FFMPEG_ROOT})
+##############################################################
+
+
+
 option (VERBOSE "Print lots of messages while compiling" OFF)
 if (VERBOSE)
     set (CMAKE_MESSAGE_LOG_LEVEL "VERBOSE" CACHE STRING "CMake log level to display")
