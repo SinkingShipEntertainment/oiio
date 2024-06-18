@@ -32,6 +32,7 @@ private_build_requires = [
 variants = [
     ["python-3.7"],
     ["python-3.9"],
+    ["python-3.11"],
 ]
 
 build_system = "cmake"
@@ -79,3 +80,5 @@ def commands():
             env.PYTHONPATH.append("{root}/lib64/python3.7/site-packages")
         elif python_ver.minor == 9:
             env.PYTHONPATH.append("{root}/lib64/python3.9/site-packages")
+        elif python_ver.minor == 11:
+            env.PYTHONPATH.append("{root}/lib64/python3.11/site-packages")
