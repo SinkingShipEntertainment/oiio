@@ -1,6 +1,6 @@
 name = "oiio"
 
-version = "2.5.9.0.sse.1.0.0"
+version = "2.5.9.0.sse.2.0.0"
 
 description = \
     """
@@ -20,7 +20,7 @@ requires = [
     "tbb",
     "numpy",
     "ffmpeg",
-    "boost-1.76",
+    "boost-1.82",
     "openexr-3.1.12",
     "openvdb-9.1.0",
     "ocio-2.1.3",  # build of OCIO without CLI tools (without OIIO as dependency)
