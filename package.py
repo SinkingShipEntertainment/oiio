@@ -81,5 +81,7 @@ def commands():
             env.PYTHONPATH.append("{root}/lib64/python3.7/site-packages")
         elif python_ver.minor == 9:
             env.PYTHONPATH.append("{root}/lib64/python3.9/site-packages")
+        elif python_ver.minor == 10:
+            env.PYTHONPATH.append("{root}/lib64/python3.10/site-packages")
         elif python_ver.minor == 11:
             env.PYTHONPATH.append("{root}/lib64/python3.11/site-packages")
